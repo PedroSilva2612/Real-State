@@ -10,3 +10,5 @@
 //         imagen.style.backgroundPositionY = `${scroll}px`;
 //     })
 // })
+
+// Codigo para añadir efecto a los backgrounds-images
