@@ -52,6 +52,36 @@ function dev() {
 }
 
 
+// Funciones para netlify
+
+function git(done) {
+    return exec('git add . && git commit -m "netlify deploy" && git push');
+    done();
+}
+
+// Watch for netlify deployment
+function netlify(done) {
+    return new Promise(function(resolve, reject) {
+        console.log(execSync('netlify watch').toString());
+        resolve();
+    });
+}
+
+// Preview Deployment
+function netlifyOpen(done) {
+    return exec('netlify open:site');
+    done();
+}
+
+// Deploy command
+exports.deploy = series(git, netlify, netlifyOpen);
+
+// Default Gulp command
+exports.default = series(openBrowser, server);
+
+// Fin de las funciones de netlify
+
+
 exports.css = css;
 exports.dev = dev;
 exports.imagenes = imagenes;
